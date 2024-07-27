@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,13 +30,14 @@ public class User {
     @Column(name = "email",nullable = false,length = 100)
     private String email;
     @Column(name = "phone_number",nullable = false)
-    private Integer phoneNumber;
+    private String phoneNumber;
     @Column(name = "birthday",nullable = false)
     private LocalDate birthday;
     @Column(name = "created_at",nullable = false)
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
 
     public User(SignRequest signRequest){
         this.myId=signRequest.getId();

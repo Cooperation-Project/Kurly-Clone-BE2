@@ -15,3 +15,6 @@ spring:
 
 jwtpassword:
   source: ${JWT_SECRET_KEY}
+
+  logging:
+    level: debug
