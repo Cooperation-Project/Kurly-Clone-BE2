@@ -1,5 +1,6 @@
 package com.github.kurlymarketclone.config.security;
 
+
 import com.github.kurlymarketclone.web.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -35,7 +36,7 @@ public class SecurityConfiguration {
                 .cors(c-> c.configurationSource(corsConfig()))
                 .authorizeRequests((requests) -> requests
                         .requestMatchers("/resources/static/**","/auth/sign-up",
-                                "/auth/login").permitAll()
+                                "/auth/login","/auth/email-check","/auth/id").permitAll()
                 )
                 .exceptionHandling((exception) -> exception
                         .authenticationEntryPoint(new CustomerAuthenticationEntryPoint())
@@ -49,7 +50,7 @@ public class SecurityConfiguration {
         corsConfiguration.setAllowCredentials(false);
         corsConfiguration.setAllowedOrigins(List.of("*"));
         corsConfiguration.addAllowedHeader("*");
-        corsConfiguration.addExposedHeader("token"); //추가
+        corsConfiguration.addExposedHeader("Token"); //추가
         corsConfiguration.setExposedHeaders(Arrays.asList("Authorization", "Authorization-refresh", "token"));
         corsConfiguration.setAllowedMethods(List.of("GET","PUT","POST","DELETE"));
         corsConfiguration.setMaxAge(1000L*60*60);
