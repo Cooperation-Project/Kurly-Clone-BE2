@@ -1,5 +1,6 @@
 package com.github.kurlymarketclone.repository.user;
 
+import com.github.kurlymarketclone.web.dto.auth.SignRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,4 +36,13 @@ public class User {
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    public User(SignRequest signRequest){
+        this.myId=signRequest.getId();
+        this.name=signRequest.getName();
+        this.email=signRequest.getEmail();
+        this.phoneNumber=signRequest.getPhoneNumber();
+        this.birthday=signRequest.getBirthday();
+        this.createdAt=LocalDateTime.now();
+    }
 }

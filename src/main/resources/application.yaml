@@ -13,3 +13,5 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/kurly_market_clone_db?useUnicode=true&characterEncoding=UTF-8
 
+jwtpassword:
+  source: ${JWT_SECRET_KEY}
