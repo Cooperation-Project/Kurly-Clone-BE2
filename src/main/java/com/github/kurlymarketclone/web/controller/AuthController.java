@@ -29,12 +29,12 @@ public class AuthController {
         httpServletResponse.setHeader("Token", token);
         return new ResponseDto(HttpStatus.OK.value(),"Login Success");
     }
-    @GetMapping(value = "/email")
+    @PostMapping(value = "/email")
     public ResponseDto emailCheck(@RequestBody EmailCheck emailCheck){
         return authService.emailCheckResult(emailCheck);
     }
 
-    @GetMapping(value = "/id")
+    @PostMapping(value = "/id")
     public ResponseDto IdCheck(@RequestBody IdCheck idCheck){
         return authService.idCheckResult(idCheck);
     }
