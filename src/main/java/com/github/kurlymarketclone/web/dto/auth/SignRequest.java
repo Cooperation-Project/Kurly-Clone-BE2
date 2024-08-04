@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @ToString
 public class SignRequest {
 
