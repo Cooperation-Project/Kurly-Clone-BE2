@@ -2,6 +2,8 @@ package com.github.kurlymarketclone.service.auth;
 
 import com.github.kurlymarketclone.config.security.JwtTokenProvider;
 import com.github.kurlymarketclone.config.security.PasswordEncoderConfig;
+import com.github.kurlymarketclone.repository.delivey.Delivery;
+import com.github.kurlymarketclone.repository.delivey.DeliveryRepository;
 import com.github.kurlymarketclone.repository.user.User;
 import com.github.kurlymarketclone.repository.user.UserRepository;
 import com.github.kurlymarketclone.service.exception.NotFoundException;
@@ -30,6 +32,7 @@ public class AuthService {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
+    private final DeliveryRepository deliveryRepository;
     @Transactional
     public ResponseDto signUpResult(SignRequest signRequest) {
         if (userRepository.existsByMyId(signRequest.getId())){
@@ -46,6 +49,9 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(signRequest.getPassword()));
         user.setCreatedAt(LocalDateTime.now());
         userRepository.save(user);
+        Delivery delivery = new Delivery(user,signRequest.getAddress());
+        delivery.setIsDefault(1);
+        deliveryRepository.save(delivery);
         return new ResponseDto(HttpStatus.OK.value(),signRequest.getName()+ "님 회원 가입에 성공하셨습니다.");
     }
 
