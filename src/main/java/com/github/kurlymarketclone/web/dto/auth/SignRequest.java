@@ -30,7 +30,7 @@ public class SignRequest {
 
     private String email;
 
-    private Integer phoneNumber;
+    private String phoneNumber;
 
 
     private String address;
