@@ -4,7 +4,7 @@ import com.github.kurlymarketclone.repository.delivey.Delivery;
 import com.github.kurlymarketclone.repository.delivey.DeliveryRepository;
 import com.github.kurlymarketclone.repository.user.User;
 import com.github.kurlymarketclone.repository.user.UserRepository;
-import com.github.kurlymarketclone.repository.userDetail.CustomUserDetails;
+import com.github.kurlymarketclone.repository.userDetail.CustomOauth2UserDetails;
 import com.github.kurlymarketclone.service.exception.NotFoundException;
 import com.github.kurlymarketclone.web.dto.mypage.UserDelivery;
 import com.github.kurlymarketclone.web.dto.mypage.UserDeliveryResponse;
@@ -14,15 +14,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class DeliveryService {
     private final DeliveryRepository deliveryRepository;
     private final UserRepository userRepository;
-    public ResponseDto getAddressResult(CustomUserDetails customUserDetails) {
-       Integer userId =  customUserDetails.getUserId();
+    public ResponseDto getAddressResult(CustomOauth2UserDetails customOauth2UserDetails) {
+       Integer userId =  customOauth2UserDetails.getUserId();
        User user = userRepository.findById(userId)
                .orElseThrow(()-> new NotFoundException("유저를 찾을 수 없습니다."));
        List<Delivery> userDeliveries = deliveryRepository.findAllByUser(user);
@@ -31,8 +30,8 @@ public class DeliveryService {
         return new ResponseDto(HttpStatus.OK.value(),"유저 배송지 조회 성공",userDeliveryResponse);
     }
 
-    public ResponseDto addAddressResult(CustomUserDetails customUserDetails, UserDelivery userDelivery) {
-        Integer userId =  customUserDetails.getUserId();
+    public ResponseDto addAddressResult(CustomOauth2UserDetails customOauth2UserDetails, UserDelivery userDelivery) {
+        Integer userId =  customOauth2UserDetails.getUserId();
         User user = userRepository.findById(userId)
                 .orElseThrow(()-> new NotFoundException("유저를 찾을 수 없습니다."));
         List<Delivery> deliveries = deliveryRepository.findAllByUser(user);

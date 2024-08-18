@@ -23,13 +23,13 @@ public class User {
     private Integer userId;
     @Column(name = "my_id",nullable = false,length = 55)
     private String myId;
-    @Column(name = "password",nullable = false,length = 255)
+    @Column(name = "password",length = 255)
     private String password;
     @Column(name = "name",nullable = false,length = 45)
     private String name;
-    @Column(name = "email",nullable = false,length = 100)
+    @Column(name = "email",length = 100)
     private String email;
-    @Column(name = "phone_number",nullable = false)
+    @Column(name = "phone_number")
     private String phoneNumber;
     @Column(name = "birthday")
     private LocalDate birthday;
@@ -37,6 +37,11 @@ public class User {
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Column(name = "provider")
+    private String provider;
+    @Column(name = "provider_id")
+    private String providerId;
 
 
     public User(SignRequest signRequest){

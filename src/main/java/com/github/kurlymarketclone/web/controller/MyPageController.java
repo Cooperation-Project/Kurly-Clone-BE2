@@ -1,6 +1,6 @@
 package com.github.kurlymarketclone.web.controller;
 
-import com.github.kurlymarketclone.repository.userDetail.CustomUserDetails;
+import com.github.kurlymarketclone.repository.userDetail.CustomOauth2UserDetails;
 import com.github.kurlymarketclone.service.mypage.MyPageService;
 import com.github.kurlymarketclone.web.dto.mypage.UserInfo;
 import com.github.kurlymarketclone.web.dto.response.ResponseDto;
@@ -20,13 +20,13 @@ public class MyPageController {
   private final MyPageService myPageService;
 
   @GetMapping(value = "/info")
-  public ResponseDto getInfo(@AuthenticationPrincipal CustomUserDetails customUserDetails) {
-    return myPageService.getUserInfo(customUserDetails);
+  public ResponseDto getInfo(@AuthenticationPrincipal CustomOauth2UserDetails customOauth2UserDetails) {
+    return myPageService.getUserInfo(customOauth2UserDetails);
   }
 
   @PutMapping(value = "/info")
-  public ResponseDto modUserInfo(@AuthenticationPrincipal CustomUserDetails customUserDetails, @RequestBody UserInfo userInfo) {
-    return myPageService.modUserInfo(customUserDetails, userInfo);
+  public ResponseDto modUserInfo(@AuthenticationPrincipal CustomOauth2UserDetails customOauth2UserDetails, @RequestBody UserInfo userInfo) {
+    return myPageService.modUserInfo(customOauth2UserDetails, userInfo);
   }
 
 }

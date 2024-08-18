@@ -2,11 +2,9 @@ package com.github.kurlymarketclone.service.mypage;
 
 import com.github.kurlymarketclone.repository.user.User;
 import com.github.kurlymarketclone.repository.user.UserRepository;
-import com.github.kurlymarketclone.repository.userDetail.CustomUserDetails;
+import com.github.kurlymarketclone.repository.userDetail.CustomOauth2UserDetails;
 import com.github.kurlymarketclone.service.exception.NotFoundException;
-import com.github.kurlymarketclone.web.dto.mypage.UserDeliveryResponse;
 import com.github.kurlymarketclone.web.dto.mypage.UserInfo;
-import com.github.kurlymarketclone.web.dto.mypage.UserInfoResponse;
 import com.github.kurlymarketclone.web.dto.response.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,16 +16,16 @@ public class MyPageService {
 
   private final UserRepository userRepository;
 
-  public ResponseDto getUserInfo(CustomUserDetails customUserDetails) {
-    Integer userId =  customUserDetails.getUserId();
+  public ResponseDto getUserInfo(CustomOauth2UserDetails customOauth2UserDetails) {
+    Integer userId =  customOauth2UserDetails.getUserId();
     User user = userRepository.findById(userId)
         .orElseThrow(()-> new NotFoundException("유저를 찾을 수 없습니다."));
 
     return new ResponseDto(HttpStatus.OK.value(), "정보 조회 성공", user);
   }
 
-  public ResponseDto modUserInfo(CustomUserDetails customUserDetails, UserInfo userInfo) {
-    Integer userId =  customUserDetails.getUserId();
+  public ResponseDto modUserInfo(CustomOauth2UserDetails customOauth2UserDetails, UserInfo userInfo) {
+    Integer userId =  customOauth2UserDetails.getUserId();
     User user = userRepository.findById(userId)
         .orElseThrow(()-> new NotFoundException("유저를 찾을 수 없습니다."));
 

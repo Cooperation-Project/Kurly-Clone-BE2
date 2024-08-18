@@ -2,7 +2,7 @@ package com.github.kurlymarketclone.service.auth;
 
 import com.github.kurlymarketclone.repository.user.User;
 import com.github.kurlymarketclone.repository.user.UserRepository;
-import com.github.kurlymarketclone.repository.userDetail.CustomUserDetails;
+import com.github.kurlymarketclone.repository.userDetail.CustomOauth2UserDetails;
 import com.github.kurlymarketclone.service.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -23,7 +23,7 @@ public class CustomUserDetailService implements UserDetailsService {
         User user=userRepository.findByMyId(myId).orElseThrow(()-> new NotFoundException("해당 유저를 찾을 수 없습니다."));
 
 
-        return CustomUserDetails.builder()
+        return CustomOauth2UserDetails.builder()
                 .myId(user.getMyId())
                 .userId(user.getUserId())
                 .password(user.getPassword())

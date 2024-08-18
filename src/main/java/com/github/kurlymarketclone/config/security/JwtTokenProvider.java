@@ -1,6 +1,5 @@
 package com.github.kurlymarketclone.config.security;
 
-import com.github.kurlymarketclone.repository.userDetail.CustomUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

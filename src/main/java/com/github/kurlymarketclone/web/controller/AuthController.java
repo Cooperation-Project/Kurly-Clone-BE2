@@ -1,6 +1,5 @@
 package com.github.kurlymarketclone.web.controller;
 
-import com.github.kurlymarketclone.repository.userDetail.CustomUserDetails;
 import com.github.kurlymarketclone.service.auth.AuthService;
 import com.github.kurlymarketclone.web.dto.auth.EmailCheck;
 import com.github.kurlymarketclone.web.dto.auth.IdCheck;
@@ -10,7 +9,6 @@ import com.github.kurlymarketclone.web.dto.response.ResponseDto;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

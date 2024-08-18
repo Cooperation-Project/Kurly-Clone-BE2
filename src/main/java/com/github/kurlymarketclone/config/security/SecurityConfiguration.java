@@ -42,6 +42,13 @@ public class SecurityConfiguration {
                         .authenticationEntryPoint(new CustomerAuthenticationEntryPoint())
                         .accessDeniedHandler(new CustomerAccessDeniedHandler()))
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+
+        http
+            .oauth2Login((auth) -> auth.loginPage("/oauth-login/login")
+                .defaultSuccessUrl("/oauth-login")
+                .failureUrl("/oauth-login/login")
+                .permitAll());
+
         return http.build();
     }
 
